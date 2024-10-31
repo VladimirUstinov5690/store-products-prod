@@ -1,0 +1,137 @@
+{% extends 'users/base.html' %}
+
+
+{% block content %}
+    <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+
+                        {% if form.errors %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                 style="margin-top: 50px;">
+                                {{ form.errors }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Создать аккаунт</h3>
+                            </div>
+                            <div class="card-body">
+                                <form action="{% url 'users:registration' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="id_first_name">Имя</label>
+                                                <input class="form-control py-4" name="first_name" id="id_first_name" type="text"
+                                                       placeholder="Введите имя" required/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="id_last_name">Фамилия</label>
+                                                <input class="form-control py-4" name="last_name" id="id_last_name" type="text"
+                                                       placeholder="Введите фамилию"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="id_username">Имя пользователя</label>
+                                            <input class="form-control py-4" name="username" id="id_username" type="text"
+                                                   aria-describedby="usernameHelp"
+                                                   placeholder="Введите имя пользователя" required/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="id_email">Адрес электронной
+                                                почты</label>
+                                            <input class="form-control py-4" name="email" id="id_email" type="email"
+                                                   aria-describedby="emailHelp"
+                                                   placeholder="Введите адрес эл. почты"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="id_password1">Пароль</label>
+                                                <input class="form-control py-4" name="password1" id="id_password1" type="password"
+                                                       placeholder="Введите пароль" required/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="id_password2">Подтверждение
+                                                    пароля</label>
+                                                <input class="form-control py-4" name="password2" id="id_password2"
+                                                       type="password" placeholder="Подтвердите пароль" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<form>-->
+                                    <!--<div class="form-row">-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <div class="form-group">-->
+                                    <!--            <label class="small mb-1" for="inputFirstName">Имя</label>-->
+                                    <!--            <input class="form-control py-4" id="inputFirstName" type="text"-->
+                                    <!--                   placeholder="Введите имя"/>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <div class="form-group">-->
+                                    <!--            <label class="small mb-1" for="inputLastName">Фамилия</label>-->
+                                    <!--            <input class="form-control py-4" id="inputLastName" type="text"-->
+                                    <!--                   placeholder="Введите фамилию"/>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-row">-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <label class="small mb-1" for="inputUsername">Имя пользователя</label>-->
+                                    <!--        <input class="form-control py-4" id="inputUsername" type="text"-->
+                                    <!--               aria-describedby="usernameHelp"-->
+                                    <!--               placeholder="Введите имя пользователя"/>-->
+                                    <!--    </div>-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <label class="small mb-1" for="inputEmailAddress">Адрес электронной-->
+                                    <!--            почты</label>-->
+                                    <!--        <input class="form-control py-4" id="inputEmailAddress" type="email"-->
+                                    <!--               aria-describedby="emailHelp"-->
+                                    <!--               placeholder="Введите адрес эл. почты"/>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-row">-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <div class="form-group">-->
+                                    <!--            <label class="small mb-1" for="inputPassword">Пароль</label>-->
+                                    <!--            <input class="form-control py-4" id="inputPassword" type="password"-->
+                                    <!--                   placeholder="Введите пароль"/>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--    <div class="col-md-6">-->
+                                    <!--        <div class="form-group">-->
+                                    <!--            <label class="small mb-1" for="inputConfirmPassword">Подтверждение-->
+                                    <!--                пароля</label>-->
+                                    <!--            <input class="form-control py-4" id="inputConfirmPassword"-->
+                                    <!--                   type="password" placeholder="Подтвердите пароль"/>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="form-group mt-4 mb-0">
+                                        <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small"><a href="{% url 'users:login' %}">Уже есть аккаунт? Авторизоваться</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}
+
